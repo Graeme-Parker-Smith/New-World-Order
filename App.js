@@ -5,6 +5,8 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Bubble from "./src/components/Bubble";
 import Tab from "./src/components/Tab";
 
+// Move code out of App.js
+
 export default function App() {
   const [state, setState] = useState({
     attackerIs: null,
@@ -27,7 +29,7 @@ export default function App() {
     return false;
   };
 
-  const doAttack = (defender) => {
+  const doAttack = defender => {
     const attackSuccessful = compareRolls();
 
     if (attackSuccessful) {
@@ -54,7 +56,12 @@ export default function App() {
   const countryClick = defender => {
     if (state.attackerIs) {
       if (state.attackerIs === defender) {
-        setState({ ...state, attackerIs: null, defender: null, showTab: false });
+        setState({
+          ...state,
+          attackerIs: null,
+          defender: null,
+          showTab: false
+        });
       } else {
         // After selecting a country to attack with AND a country to be attacked
         setState({ ...state, showTab: true, defender });
@@ -67,7 +74,12 @@ export default function App() {
   return (
     <View style={styles.container}>
       {state.showTab ? (
-        <Tab doAttack={doAttack} state={state} setState={setState} defender={state.defender} />
+        <Tab
+          doAttack={doAttack}
+          state={state}
+          setState={setState}
+          defender={state.defender}
+        />
       ) : null}
       <Text>
         {state.attackerIs ? "Choose defender broh!" : "Choose attacker broh!"}
