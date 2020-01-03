@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { Button } from "react-native-elements";
 
-const Tab = ({ defender, state, setState, doAttack }) => {
+const Tab = ({ defender, doAttack }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
