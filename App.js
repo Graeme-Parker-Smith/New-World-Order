@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Button } from "react-native-elements";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Bubble from "./src/components/Bubble";
 import Tab from "./src/components/Tab";
 
