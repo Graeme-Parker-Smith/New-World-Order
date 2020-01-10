@@ -6,6 +6,7 @@ import Bubble from "./src/components/Bubble";
 import Tab from "./src/components/Tab";
 
 // Move code out of App.js
+// something more
 
 export default function App() {
   const [state, setState] = useState({
