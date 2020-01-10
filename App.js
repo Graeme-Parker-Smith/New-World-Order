@@ -72,7 +72,6 @@ export default function App() {
     const attackSuccessful = compareRolls(defender, attackDieCount);
     const { defenderLosses, attackerLosses } = attackSuccessful;
 
-    // if (attackSuccessful) {
     console.log(`Attacker lost ${attackerLosses} armies!`);
     console.log(`Defender lost ${defenderLosses} armies!`);
     setState(prevState => ({
@@ -82,17 +81,7 @@ export default function App() {
       attackerIs: null,
       defender: null,
       showTab: false
-      //   }));
-      // } else {
-      //   console.log("attack failed!");
-      //   setState(prevState => ({
-      //     ...prevState,
-      //     [state.attackerIs]: prevState[state.attackerIs] - 1,
-      //     attackerIs: null,
-      //     defender: null,
-      //     showTab: false
     }));
-    // }
   };
 
   const countryClick = defender => {
