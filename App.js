@@ -17,21 +17,25 @@ export default function App() {
     showTab: false
   });
 
-  const compareRolls = () => {
+  const compareRolls = attackDieCount => {
     const rollDie = () => {
       return Math.floor(Math.random() * 6 + 1);
     };
-    const a = rollDie();
+    let a = [];
+    for (let i = 0; i < attackDieCount; i++) {
+      a.push(rollDie());
+    }
     const d = rollDie();
-    console.log("attacker rolled: ", a);
     console.log("defender rolled: ", d);
-
-    if (a > d) return true;
+    for (let num of a) {
+      console.log("attacker rolled: ", num);
+      if (num > d) return true;
+    }
     return false;
   };
 
-  const doAttack = defender => {
-    const attackSuccessful = compareRolls();
+  const doAttack = (defender, attackDieCount) => {
+    const attackSuccessful = compareRolls(attackDieCount);
 
     if (attackSuccessful) {
       console.log("attack success!");

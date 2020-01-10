@@ -11,22 +11,22 @@ const Tab = ({ defender, doAttack }) => {
       <View style={styles.buttonContainer}>
         <Button
           containerStyle={styles.button}
-          onPress={() => doAttack(defender)}
-          title="2"
-        />
-        <Button
-          containerStyle={styles.button}
-          onPress={() => doAttack(defender)}
-          title="3"
-        />
-        <Button
-          containerStyle={styles.button}
-          onPress={() => doAttack(defender)}
+          onPress={() => doAttack(defender, 1)}
           title="1"
         />
         <Button
           containerStyle={styles.button}
-          onPress={() => doAttack(defender)}
+          onPress={() => doAttack(defender, 2)}
+          title="2"
+        />
+        <Button
+          containerStyle={styles.button}
+          onPress={() => doAttack(defender, 3)}
+          title="3"
+        />
+        <Button
+          containerStyle={styles.button}
+          onPress={() => doAttack(defender, 4)}
           title="ALL"
         />
       </View>
