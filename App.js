@@ -41,11 +41,6 @@ export default function App() {
     d.sort((a, b) => b - a);
     console.log("d is: ", d);
 
-    // for (let num of a) {
-    //   console.log("attacker rolled: ", num);
-    //   if (num > d[0]) return true;
-    // }
-
     // Going from greatest defender roll value to least, compare with opposing attacker roll value
     for (let i = 0; i < d.length && i < a.length; i++) {
       console.log("attacker roll is: ", a[i]);
