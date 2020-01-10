@@ -17,45 +17,82 @@ export default function App() {
     showTab: false
   });
 
-  const compareRolls = attackDieCount => {
+  const compareRolls = (defender, attackDieCount) => {
+    // define variables
+    let attackerLosses = 0;
+    let defenderLosses = 0;
+    let a = [];
+    let d = [];
     const rollDie = () => {
       return Math.floor(Math.random() * 6 + 1);
     };
-    let a = [];
+
+    // calculate attacker roll values
     for (let i = 0; i < attackDieCount; i++) {
       a.push(rollDie());
     }
-    const d = rollDie();
-    console.log("defender rolled: ", d);
-    for (let num of a) {
-      console.log("attacker rolled: ", num);
-      if (num > d) return true;
+    a.sort((a, b) => b - a);
+    console.log("a is: ", a);
+
+    // calculate defender roll values
+    for (let i = 0; i < state[defender] && i < 3; i++) {
+      d.push(rollDie());
     }
-    return false;
+    d.sort((a, b) => b - a);
+    console.log("d is: ", d);
+
+    // for (let num of a) {
+    //   console.log("attacker rolled: ", num);
+    //   if (num > d[0]) return true;
+    // }
+
+    // Going from greatest defender roll value to least, compare with opposing attacker roll value
+    for (let i = 0; i < d.length && i < a.length; i++) {
+      console.log("attacker roll is: ", a[i]);
+      console.log("defender roll is: ", d[i]);
+      if (a[i] > d[i]) {
+        defenderLosses++;
+      } else {
+        attackerLosses++;
+      }
+    }
+    return { defenderLosses, attackerLosses };
   };
 
   const doAttack = (defender, attackDieCount) => {
-    const attackSuccessful = compareRolls(attackDieCount);
-
-    if (attackSuccessful) {
-      console.log("attack success!");
-      setState(prevState => ({
+    if (state[defender] < 1) {
+      console.log("defender has no armies to defend with!!!");
+      return setState(prevState => ({
         ...prevState,
-        [defender]: prevState[defender] - 1,
-        attackerIs: null,
-        defender: null,
-        showTab: false
-      }));
-    } else {
-      console.log("attack failed!");
-      setState(prevState => ({
-        ...prevState,
-        [state.attackerIs]: prevState[state.attackerIs] - 1,
         attackerIs: null,
         defender: null,
         showTab: false
       }));
     }
+    const attackSuccessful = compareRolls(defender, attackDieCount);
+    const { defenderLosses, attackerLosses } = attackSuccessful;
+
+    // if (attackSuccessful) {
+    console.log(`Attacker lost ${attackerLosses} armies!`);
+    console.log(`Defender lost ${defenderLosses} armies!`);
+    setState(prevState => ({
+      ...prevState,
+      [defender]: prevState[defender] - defenderLosses,
+      [state.attackerIs]: prevState[state.attackerIs] - attackerLosses,
+      attackerIs: null,
+      defender: null,
+      showTab: false
+      //   }));
+      // } else {
+      //   console.log("attack failed!");
+      //   setState(prevState => ({
+      //     ...prevState,
+      //     [state.attackerIs]: prevState[state.attackerIs] - 1,
+      //     attackerIs: null,
+      //     defender: null,
+      //     showTab: false
+    }));
+    // }
   };
 
   const countryClick = defender => {
@@ -81,9 +118,8 @@ export default function App() {
       {state.showTab ? (
         <Tab
           doAttack={doAttack}
-          state={state}
-          setState={setState}
           defender={state.defender}
+          attackerArmyCount={state[state.attackerIs]}
         />
       ) : null}
       <Text>
