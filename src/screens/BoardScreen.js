@@ -16,7 +16,10 @@ const BoardScreen = () => {
   });
 
   const countryNames = ["Canada", "Merica", "Mexico"];
-  const players = [{name: "Alejandro", color: '#3AF'}, {name: "Giselle", color: '#3ADF12'}];
+  const players = [
+    { name: "Alejandro", color: "#3AF" },
+    { name: "Giselle", color: "#3ADF12" }
+  ];
 
   return (
     <View style={styles.container}>
