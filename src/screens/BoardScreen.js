@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Bubble from "../components/Bubble";
 import Tab from "../components/Tab";
 import Country from "../components/Country";
@@ -16,6 +16,7 @@ const BoardScreen = () => {
   });
 
   const countryNames = ["Canada", "Merica", "Mexico"];
+  const players = [{name: "Alejandro", color: '#3AF'}, {name: "Giselle", color: '#3ADF12'}];
 
   return (
     <View style={styles.container}>

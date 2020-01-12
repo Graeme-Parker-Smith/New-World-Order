@@ -5,7 +5,7 @@ import Bubble from "./Bubble";
 const Country = ({name, icon, handleClick}) => {
   return (
     <Button
-      containerStyle={styles.country}
+      buttonStyle={styles.country}
       raised
       title={name}
       icon={icon}
@@ -16,7 +16,8 @@ const Country = ({name, icon, handleClick}) => {
 
 const styles = {
   country: {
-    padding: 20
+    padding: 20,
+    backgroundColor: '#3ADF12'
   }
 };
 
