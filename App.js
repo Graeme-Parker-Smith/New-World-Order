@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Button } from "react-native-elements";
 import Bubble from "./src/components/Bubble";
 import Tab from "./src/components/Tab";
+import Country from "./src/components/Country";
 
 // Move code out of App.js
 // something more
@@ -13,6 +14,7 @@ export default function App() {
     defender: null,
     canadaArmies: 5,
     mericaArmies: 12,
+    mexicoArmies: 8,
     showTab: false
   });
 
@@ -96,6 +98,8 @@ export default function App() {
     }
   };
 
+  const countryNames = ["Merica", "Canada", "Mexico"];
+
   return (
     <View style={styles.container}>
       {state.showTab ? (
@@ -108,20 +112,17 @@ export default function App() {
       <Text>
         {state.attackerIs ? "Choose defender broh!" : "Choose attacker broh!"}
       </Text>
-      <Button
-        containerStyle={styles.country}
-        icon={<Bubble value={state.canadaArmies} />}
-        title="Canada"
-        raised
-        onPress={() => countryClick("canadaArmies")}
-      />
-      <Button
-        containerStyle={styles.country}
-        icon={<Bubble value={state.mericaArmies} />}
-        title="'Merica"
-        raised
-        onPress={() => countryClick("mericaArmies")}
-      />
+      {countryNames.map((name, idx) => {
+        let stateName = name.toLowerCase() + "Armies";
+        return (
+          <Country
+            key={idx}
+            name={name}
+            icon={<Bubble value={state[stateName]} />}
+            handleClick={() => countryClick(stateName)}
+          />
+        );
+      })}
     </View>
   );
 }

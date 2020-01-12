@@ -2,14 +2,14 @@ import React from "react";
 import { Button } from "react-native-elements";
 import Bubble from "./Bubble";
 
-const Country = ({ countryName, armyState }) => {
+const Country = ({name, icon, handleClick}) => {
   return (
     <Button
       containerStyle={styles.country}
-      icon={<Bubble value={state[armyState]} />}
-      title={countryName}
       raised
-      onPress={() => countryClick(armyState)}
+      title={name}
+      icon={icon}
+      onPress={handleClick}
     />
   );
 };
